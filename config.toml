@@ -1,0 +1,73 @@
+# Edited image path | 编辑好的图片路径
+image_path = "./image/image_monitor.png"
+
+[serial]
+# COM port | 串口号
+port = "COM33"
+# Baud rate | 比特率
+baudrate = 9600
+
+[android]
+# Maximum touch slots | 多点触控数量
+max_slot = 12
+# Actual screen size in pixels [width, height] | 设备实际屏幕大小
+monitor_size = [1600, 2560]
+# Touch input size in pixels [width, height] | 设备触控屏幕大小
+input_size = [1600, 2560]
+# Rotate screen 180° (enable when charging port faces up) | 是否开启屏幕反转
+reverse_monitor = false
+# ADB device serial number (leave empty for single device) | 指定触控设备序列号
+specified_device = ""
+
+[detection]
+# Detection area radius in pixels | 检测区域的像素值范围
+area_scope = 50
+# Number of sample points on circle | 检测区域圆上点的数量
+area_point_num = 8
+
+[performance]
+# Enable sleep in touch thread (turn on if CPU usage too high) | 是否启用 sleep
+sleep_mode = false
+# Sleep delay in microseconds | 每次 sleep 的延迟(微秒)
+sleep_delay_us = 100
+# Time compensation for busy-wait sleep calibration | 时间补偿值
+time_compensation = 1.0
+
+# RGB color to zone mapping (not recommended to modify)
+# Format: "R-G-B" = "ZoneName"
+# RGB 颜色值对应区块配置(不建议更改)
+[zone_colors]
+"41-65-93" = "A1"
+"87-152-13" = "A2"
+"213-109-81" = "A3"
+"23-222-55" = "A4"
+"69-203-71" = "A5"
+"147-253-55" = "A6"
+"77-19-35" = "A7"
+"159-109-79" = "A8"
+"87-217-111" = "B1"
+"149-95-154" = "B2"
+"97-233-9" = "B3"
+"159-27-222" = "B4"
+"152-173-186" = "B5"
+"192-185-149" = "B6"
+"158-45-23" = "B7"
+"197-158-219" = "B8"
+"127-144-79" = "C1"
+"242-41-155" = "C2"
+"69-67-213" = "D1"
+"105-25-130" = "D2"
+"17-39-170" = "D3"
+"97-103-203" = "D4"
+"113-25-77" = "D5"
+"21-21-140" = "D6"
+"155-179-166" = "D7"
+"55-181-134" = "D8"
+"61-33-27" = "E1"
+"51-91-95" = "E2"
+"143-227-63" = "E3"
+"216-67-226" = "E4"
+"202-181-245" = "E5"
+"99-11-183" = "E6"
+"75-119-224" = "E7"
+"182-19-85" = "E8"
