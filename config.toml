@@ -14,7 +14,7 @@ max_slot = 12
 monitor_size = [1600, 2560]
 # Touch input size in pixels [width, height] | 设备触控屏幕大小
 input_size = [1600, 2560]
-# Rotate screen 180° (enable when charging port faces up) | 是否开启屏幕反转
+# Rotate screen 180 degress (enable when charging port faces up) | 是否开启屏幕反转
 reverse_monitor = false
 # ADB device serial number (leave empty for single device) | 指定触控设备序列号
 specified_device = ""

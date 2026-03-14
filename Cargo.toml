@@ -1,8 +1,8 @@
 [package]
-name = "maimai-touch"
+name = "maimai-touch-rs"
 version = "0.1.0"
-edition = "2021"
-description = "Turn an Android device into a maimai arcade touch panel controller"
+edition = "2026"
+description = "Turns an Android device into a maimai arcade touch panel controller"
 
 [[example]]
 name = "getevent"
