@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Prepare release files
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path release
+          Copy-Item target/release/maimai-touch.exe release/
+          Copy-Item config.toml release/
+          Copy-Item -Recurse image release/
+          Copy-Item start.bat release/
+
+      - name: Create zip archive
+        shell: pwsh
+        run: Compress-Archive -Path release/* -DestinationPath maimai-touch-windows.zip
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: maimai-touch-windows.zip
+          generate_release_notes: true
