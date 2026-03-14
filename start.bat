@@ -1,2 +1,2 @@
 @echo off
-.\maimai-touch.exe
+.\maimai-touch-rs.exe
