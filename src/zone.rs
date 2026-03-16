@@ -2,8 +2,8 @@ use image::RgbImage;
 use std::collections::{HashMap, HashSet};
 use std::f64::consts::PI;
 
-/// The 7-group zone layout matching the maimai touch panel.
-/// Each sub-array is one byte in the serial packet (bit-packed).
+/// The 7-group zone layout matching the maimai touch panel
+/// Each sub-array is one byte in the serial packet (bit-packed)
 pub const ZONE_LAYOUT: &[&[&str]] = &[
     &["A1", "A2", "A3", "A4", "A5"],
     &["A6", "A7", "A8", "B1", "B2"],
@@ -14,7 +14,7 @@ pub const ZONE_LAYOUT: &[&[&str]] = &[
     &["E5", "E6", "E7", "E8"],
 ];
 
-/// Pre-computed circle offsets for area sampling.
+/// Pre-computed circle offsets for area sampling
 struct CircleOffsets {
     offsets: Vec<(i32, i32)>,
 }
@@ -34,7 +34,7 @@ impl CircleOffsets {
     }
 }
 
-/// Handles image-based zone detection by sampling pixels and mapping RGB colors to zones.
+/// Handles image-based zone detection by sampling pixels and mapping RGB colors to zones
 pub struct ZoneLookup {
     image: RgbImage,
     color_to_zone: HashMap<String, String>,
@@ -55,7 +55,7 @@ impl ZoneLookup {
         }
     }
 
-    /// Samples the center pixel plus points on a circle, returns all matching zone names.
+    /// Samples the center pixel plus points on a circle, returns all matching zone names
     pub fn lookup_zones(&self, x: i32, y: i32) -> HashSet<String> {
         let (w, h) = (self.image.width() as i32, self.image.height() as i32);
         let mut zones = HashSet::new();
@@ -83,8 +83,8 @@ impl ZoneLookup {
         zones
     }
 
-    /// Converts a set of touched zone names into a binary grid matching ZONE_LAYOUT.
-    /// Each inner Vec has one entry per zone in that group: 1 if touched, 0 otherwise.
+    /// Converts a set of touched zone names into a binary grid matching ZONE_LAYOUT
+    /// Each inner Vec has one entry per zone in that group: 1 if touched, 0 otherwise
     pub fn zones_to_grid(touched: &HashSet<String>) -> Vec<Vec<u8>> {
         ZONE_LAYOUT
             .iter()

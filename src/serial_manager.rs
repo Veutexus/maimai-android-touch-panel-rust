@@ -7,10 +7,10 @@ use std::time::{Duration, Instant};
 use crate::config::PerformanceConfig;
 use crate::zone::ZoneLookup;
 
-/// Touch update: the 9-byte packet and the list of touched zone names (for display).
+/// Touch update: the 9-byte packet and the list of touched zone names (for display)
 pub type TouchUpdate = (Vec<u8>, Vec<String>);
 
-/// Shared state protected by a Mutex for the write thread.
+/// Shared state protected by a Mutex for the write thread
 struct SharedState {
     current_packet: Vec<u8>,
     started: bool,
@@ -38,7 +38,6 @@ impl SerialManager {
             started: false,
         }));
 
-        // Match Python's ping_touch_thread(): send initial empty packet
         let _ = tx.send((Self::build_empty_packet(), vec![]));
 
         // Spawn touch thread
@@ -77,13 +76,13 @@ impl SerialManager {
         })
     }
 
-    /// Queue a touch update from the getevent thread.
+    /// Queue a touch update from the getevent thread
     pub fn change_touch(&self, grid: &[Vec<u8>], touch_keys: Vec<String>) {
         let packet = Self::build_touch_packet(grid);
         let _ = self.tx.send((packet, touch_keys));
     }
 
-    /// Force the started flag (used by the `start` console command).
+    /// Force the started flag (used by the `start` console command)
     pub fn set_started(&self, started: bool) {
         if let Ok(mut state) = self.shared.lock() {
             state.started = started;

@@ -22,10 +22,10 @@ impl Default for TouchSlot {
     }
 }
 
-/// Shared ADB process ID so main thread can kill it on exit.
+/// Shared ADB process ID so main thread can kill it on exit
 pub static ADB_PID: AtomicU32 = AtomicU32::new(0);
 
-/// Kill the ADB child process if it's still running.
+/// Kill the ADB child process if it's still running
 pub fn kill_adb() {
     let pid = ADB_PID.load(Ordering::Relaxed);
     if pid != 0 {
@@ -56,7 +56,6 @@ fn spawn_adb(specified_device: &str) -> Option<Child> {
     }
     adb_args.extend_from_slice(&["shell", "getevent", "-l"]);
 
-    // Match Python: subprocess.Popen(adb_cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     let result = Command::new("adb")
         .args(&adb_args)
         .stdout(Stdio::piped())
@@ -76,8 +75,8 @@ fn spawn_adb(specified_device: &str) -> Option<Child> {
     }
 }
 
-/// Spawns `adb shell getevent -l` and parses multi-touch Type B events.
-/// Converts touch positions to zones and sends updates to the serial manager.
+/// Spawns `adb shell getevent -l` and parses multi-touch Type B events
+/// Converts touch positions to zones and sends updates to the serial manager
 pub fn run_getevent(
     serial_manager: &SerialManager,
     zone_lookup: &ZoneLookup,
@@ -187,7 +186,7 @@ pub fn run_getevent(
     eprintln!("ADB getevent ended. Is the device still connected?");
 }
 
-/// Maps current touch positions to zones and sends the packet to serial manager.
+/// Maps current touch positions to zones and sends the packet to serial manager
 fn convert(touch_data: &[TouchSlot], serial_manager: &SerialManager, zone_lookup: &ZoneLookup) {
     let mut all_zones = std::collections::HashSet::new();
 
