@@ -24,7 +24,7 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Path release
-          Copy-Item target/x86_64-pc-windows-msvc/release/maimai-touch.exe release/
+          Copy-Item target/x86_64-pc-windows-gnu/release/maimai-touch.exe release/
           Copy-Item config.toml release/
           Copy-Item -Recurse image release/
           Copy-Item start.bat release/
